@@ -6,7 +6,13 @@ function imgmove() {
         $imginner = $(".g-list"),
         w_width = $(window).width() - 20;
     $(".g-item img").css({
-            "width": w_width + "px"
+        "width": w_width + "px"
+    })
+    $(".g-item").css({
+        "width": w_width + "px"
+    })
+    $(".g-list").css({
+            "width": w_width * 4 + "px"
         })
         //console.log(w_width);
     function move() {
@@ -14,7 +20,7 @@ function imgmove() {
         //轮播到最后张时，跳转到第一张
         if (i == imgnum) {
             $imginner.css({
-                "margin-top": 0
+                "margin-left": 0
             })
             i = 1;
         }
@@ -28,8 +34,6 @@ function imgmove() {
             $(".g-icons i").eq(i).addClass("cur").siblings().removeClass("cur");
         }
     }
-
-
     //点击下标签，改变轮播图
     $(".g-icons i").each(function(index) {
         $(".g-icons i").on('click', function() {
@@ -47,22 +51,30 @@ function imgmove() {
         move();
     }, 3000)
     window.onorientationchange = function() {
-        //console.log(t);
-        if (t) {
-            clearInterval(t);
+            //console.log(t);
+            if (t) {
+                clearInterval(t);
+            }
+            i = 1;
+            w_width = $(window).width() - 20;
+            $(".g-icons i").removeClass("cur");
+            $(".g-icons i:first-child").addClass("cur");
+            // var w_width = $(window).width() - 20;
+            $(".g-list").css({
+                "margin-left": -w_width + "px",
+            })
+            imgmove();
         }
-        i = 1;
-        w_width = $(window).width() - 20;
-        $(".g-icons i").removeClass("cur");
-        $(".g-icons i:first-child").addClass("cur");
-        // var w_width = $(window).width() - 20;
-        $(".g-list").css({
-            "margin-left": -w_width + "px",
-        })
-        imgmove();
-    }
+        // 鼠标hover移除定时器
+    $(".g-list").hover(function() {
+        clearInterval(t);
+    }, function() {
+        t = setInterval(function() {
+            i++;
+            move();
+        }, 3000)
+    })
 }
-
 
 function Carousel_Y() {
     var i = 0,
@@ -87,30 +99,27 @@ function Carousel_Y() {
         i++;
         move_Y();
     }, 3000)
-
 }
 
 function btn_click() {
-    //导航栏更多内容
-    $(".more").on("click", function() {
-        $(".main-nav table tr").removeAttr("style").css("display", "blcok");
-        $(".footer").removeAttr("style");
-        $(".more").addClass("display-n");
-        $("#span-online").removeAttr("style");
+    $("#showbtn").on("click", function() {
+        $(".hide").show();
+        $("#showbtn").hide();
     })
-    $(".less").on("click", function() {
-        $(".main-nav table tr").css("display", "none");
-        $(".main-nav table .tr-line").removeAttr("style");
-        $(".footer").css("display", "none");
-        $(".more").removeClass("display-n").addClass("display-b");
-        $("#span-online").css("display", "none");
+    $("#hidebtn").on("click", function() {
+        $(".hide").hide();
+        $("#showbtn").show();
+    })
+    $(".main-nav ul li a").on("click", function() {
+        $(".main-nav ul li a").removeClass("oncur");
+        $(this).addClass("oncur");
     })
 }
 
 function ajax() {
     //var newsid = $(this).attr("class");
     $.ajax({
-        url: 'php/show.php',
+        url: './build/php/show.php',
         type: 'post',
         dataType: 'json',
         beforeSend: LoadFunction,
@@ -152,20 +161,15 @@ function ajax() {
             })
         }
     }
-
 }
 
 function btn_ajax() {
     //选择新闻类型
-    $('.main-nav td span').on("click", function() {
-        $('.main-nav td span').removeClass("cur");
-        $(this).addClass("cur");
-    })
-    $(".onclick").on('click', function() {
-            var newsid = $(this).attr("id");
+    $('.main-nav ul li a').on("click", function() {
+            var newsid = $(this).attr("id")|| {};
             console.log(newsid);
             $.ajax({
-                url: 'php/select.php',
+                url: './build/php/select.php',
                 type: 'post',
                 cache: 'false',
                 data: { newsid },
@@ -177,7 +181,6 @@ function btn_ajax() {
 
             function beforeCheck() {
                 $('.index-list').empty();
-
             }
 
             function errCheck() {
@@ -192,7 +195,7 @@ function btn_ajax() {
     $('.morewrp').on("click", function() {
         var newsid = $(this).attr("class");
         $.ajax({
-            url: 'php/show.php',
+            url: './build/php/show.php',
             type: 'post',
             dataType: 'json',
             beforeSend: LoadFunction,
