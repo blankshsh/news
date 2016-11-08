@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=320.1,minimum-scale=1.0,maximum-scale=1.0">
+    <title>百度新闻</title>
+    <link rel="stylesheet" type="text/css" href="stylesheets/index.css">
+</head>
+
+<body>
+    <!-- 头部 -->
+    <header>
+        <div class="header-left">
+            <div class="header-btn handlogo"></div>
+            <div class="header-btn userhome"></div>
+        </div>
+        <div class="header-right">
+            <div class="header-btn subscribe"></div>
+            <div class="header-btn search"></div>
+        </div>
+    </header>
+    <!-- 身体包裹 -->
+    <div class="wrp">
+        <div class="nav-wrp">
+            <!-- 导航 -->
+            <div class="divider"></div>
+            <div class="main-nav">
+                <table>
+                    <tbody>
+                        <tr class="tr-line">
+                            <td colspan="1">
+                                <div>
+                                    <b></b>
+                                    <span class="onclick cur" id="type1">推荐</span>
+                                </div>
+                            </td>
+                            <td colspan="1">
+                                <div>
+                                    <b></b>
+                                    <span class="onclick" id="type2">百家</span>
+                                </div>
+                            </td>
+                            <td colspan="1">
+                                <div>
+                                    <b></b>
+                                    <span class="onclick" id="type3">本地</span>
+                                </div>
+                            </td>
+                            <td colspan="1">
+                                <div>
+                                    <b></b>
+                                    <span class="onclick" id="type4">图片</span>
+                                </div>
+                            </td>
+                            <td colspan="1">
+                                <div>
+                                    <b></b>
+                                    <span class="onclick" id="type5">娱乐</span>
+                                </div>
+                            </td>
+                            <td colspan="1">
+                                <div>
+                                    <b></b>
+                                    <span>社会</span>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr class="tr-line">
+                            <td colspan="1">
+                                <div>
+                                    <b></b>
+                                    <span>军事</span>
+                                </div>
+                            </td>
+                            <td colspan="1">
+                                <div>
+                                    <b></b>
+                                    <span>女人</span>
+                                </div>
+                            </td>
+                            <td colspan="1">
+                                <div>
+                                    <b></b>
+                                    <span>搞笑</span>
+                                </div>
+                            </td>
+                            <td colspan="1">
+                                <div>
+                                    <b></b>
+                                    <span>科技</span>
+                                </div>
+                            </td>
+                            <td colspan="2">
+                                <div>
+                                    <b></b>
+                                    <span id="span-online" style="display: none">互联网</span>
+                                    <div class="more">
+                                        更多
+                                        <div class="down-triangle"></div>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr style="display: none">
+                            <td colspan="1">
+                                <div>
+                                    <b></b>
+                                    <span>生活</span>
+                                </div>
+                            </td>
+                            <td colspan="1">
+                                <div>
+                                    <b></b>
+                                    <span>国际</span>
+                                </div>
+                            </td>
+                            <td colspan="1">
+                                <div>
+                                    <b></b>
+                                    <span>国内</span>
+                                </div>
+                            </td>
+                            <td colspan="1">
+                                <div>
+                                    <b></b>
+                                    <span>体育</span>
+                                </div>
+                            </td>
+                            <td colspan="1">
+                                <div>
+                                    <b></b>
+                                    <span>汽车</span>
+                                </div>
+                            </td>
+                            <td colspan="1">
+                                <div>
+                                    <b></b>
+                                    <span>财经</span>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr style="display: none;">
+                            <td colspan="1">
+                                <div>
+                                    <b></b>
+                                    <span>房产</span>
+                                </div>
+                            </td>
+                            <td colspan="1">
+                                <div>
+                                    <b></b>
+                                    <span>时尚</span>
+                                </div>
+                            </td>
+                            <td colspan="1">
+                                <div>
+                                    <b></b>
+                                    <span>教育</span>
+                                </div>
+                            </td>
+                            <td colspan="1">
+                                <div>
+                                    <b></b>
+                                    <span>游戏</span>
+                                </div>
+                            </td>
+                            <td colspan="1">
+                                <div>
+                                    <b></b>
+                                    <span>旅游</span>
+                                </div>
+                            </td>
+                            <td colspan="1">
+                                <div>
+                                    <b></b>
+                                    <span>人文</span>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr style="display: none;">
+                            <td colspan="2">
+                                <div>
+                                    <b></b>
+                                    <span>创意</span>
+                                </div>
+                            </td>
+                            <td colspan="2">
+                                <div>
+                                    <b></b>
+                                    <span>互联网+</span>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="footer" style="display: none">
+                <div class="btn-group">
+                    <div class="reporter-rank">记者榜</div>
+                    <div class="media-rank"><b></b>媒体榜</div>
+                    <div class="manage-subscribe"><b></b>删除及排序</div>
+                </div>
+                <div class="less">收起
+                    <div class="up-triangle"></div>
+                </div>
+            </div>
+        </div>
+        <!-- 主身体 -->
+        <div class="content">
+            <div class="imgmove">
+                <!-- 图片轮播 -->
+                <div class="g-list">
+                    <div class="g-item">
+                        <div class="g-item-innerbox">
+                            <div class="g-imagebox">
+                                <img src="images/xigua.jpg">
+                            </div>
+                            <h4 class="g-title"><span>大学生西瓜大战减压 互扔瓜瓤</span></h4>
+                        </div>
+                    </div>
+                    <div class="g-item">
+                        <div class="g-item-innerbox">
+                            <div class="g-imagebox">
+                                <img src="images/xiong.jpg">
+                            </div>
+                            <h4 class="g-title"><span>夫妇养270斤熊23年 同桌进餐</span></h4>
+                        </div>
+                    </div>
+                    <div class="g-item">
+                        <div class="g-item-innerbox">
+                            <div class="g-imagebox">
+                                <img src="images/car.jpg">
+                            </div>
+                            <h4 class="g-title"><span>江西女司机车祸后弃车回家吃饭</span></h4>
+                        </div>
+                    </div>
+                    <div class="g-item">
+                        <div class="g-item-innerbox">
+                            <div class="g-imagebox">
+                                <img src="images/xigua.jpg">
+                            </div>
+                            <h4 class="g-title"><span>大学生西瓜大战减压 互扔瓜瓤</span></h4>
+                        </div>
+                    </div>
+                </div>
+                <!-- 滚动显示条 -->
+                <div class="g-icons">
+                    <i class="cur"></i>
+                    <i class=""></i>
+                    <i class=""></i>
+                </div>
+            </div>
+            <div class="hotword">
+                <!-- 热词新闻 -->
+                <div class="hotword-left">
+                    <span>热点</span>
+                </div>
+                <ul class="hotword-right">
+                    <li>
+                        <a href="">习近平亲切会见中国新闻奖获奖代表</a>
+                    </li>
+                    <li>
+                        <a href="">《网络安全法》获表决通过</a>
+                    </li>
+                    <li>
+                        <a href="">乐视市值4天蒸发128亿</a>
+                    </li>
+                    <li>
+                        <a href="">工商总局约谈电商</a>
+                    </li>
+                    <li>
+                        <a href="">中央重拳打击港独</a>
+                    </li>
+                    <li>
+                        <a href="">小伙耗资800万买退役波音737</a>
+                    </li>
+                    <li>
+                        <a href="">交通部公布网约车考试内容</a>
+                    </li>
+                    <li>
+                        <a href="">寒潮来袭南方局地降12℃</a>
+                    </li>
+                    <li>
+                        <a href="">香港重拳调控房价</a>
+                    </li>
+                    <li>
+                        <a href="">习近平亲切会见中国新闻奖获奖代表</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="index-view-subpage-feed">
+                <!-- 主新闻 -->
+                <div class="index-list"></div>
+                <div class="morewrp">
+                    <!-- 点击加载更多 -->
+                    <div class="moremoremore">点击加载更多
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+    <script type="text/javascript" src="scripts/jquery.js"></script>
+    <script type="text/javascript" src="scripts/index.js"></script>
+</body>
+
+</html>
