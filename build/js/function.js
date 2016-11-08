@@ -78,8 +78,8 @@ function imgmove() {
 
 function Carousel_Y() {
     var i = 0,
-        imgnum = $(".hotword-right").children().length,
-        $imginner = $(".hotword-right");
+        imgnum = $(".hotword-r").children().length,
+        $imginner = $(".hotword-r");
 
     function move_Y() {
         //创建函数
@@ -148,16 +148,17 @@ function ajax() {
                 }]
             }
             $.each(dataInt.newdata, function(key, value) {
-                var newbox = $("<div>").addClass("index-list-item").appendTo($(".index-list"));
-                var newsitem = $("<div>").addClass("index-list-main showleft").appendTo(newbox);
-                var imgbox = $("<div>").addClass("index-list-image").appendTo(newsitem);
-                var img = $("<img>").attr("src", $(value).attr("newsimg")).appendTo(imgbox);
-                var newstext = $("<div>").addClass("index-list-main-text").appendTo(newsitem);
-                var title = $("<div>").addClass("index-list-main-title").text($(value).attr("newstitle")).appendTo(newstext);
-                var content = $("<div>").addClass("index-list-main-abs").text($(value).attr("newscontent")).appendTo(newstext);
-                var newsbottom = $("<div>").addClass("index-list-bottom").appendTo(newsitem);
-                var time = $("<div>").addClass("index-list-main-time").appendTo(newsbottom);
-                var newtime = $("<div>").addClass("tip-time").text($(value).attr("newstime")).appendTo(time);
+                var newbox = $('<div class="index-list-item">');
+                var newsitem = $('<div class="index-list-main">');
+                var imgbox = $('<div class="index-list-image">');
+                var img = $('<img src="' + $(value).attr("newsimg") + '">');
+                var newstext = $('<div class="index-list-main-text">');
+                var title = $('<div class="index-list-main-title">').text($(value).attr("newstitle"));
+                var content = $('<div class="index-list-main-abs">').text($(value).attr("newscontent"));
+                var newsbottom = $('<div class="index-list-bottom">');
+                var time = $('<div class="index-list-main-time">');
+                var newstime = $('<div class="tip-time">').text($(value).attr("newstime"));
+                $(".index-list").append(newbox.append(newsitem.append(imgbox.append(img)).append(newstext.append(title).append(content)).append(newsbottom.append(time.append(newstime)))));
             })
         }
     }
@@ -166,7 +167,7 @@ function ajax() {
 function btn_ajax() {
     //选择新闻类型
     $('.main-nav ul li a').on("click", function() {
-            var newsid = $(this).attr("id")|| {};
+            var newsid = $(this).attr("id") || {};
             console.log(newsid);
             $.ajax({
                 url: './build/php/select.php',
@@ -225,16 +226,17 @@ function btn_ajax() {
                 }]
             }
             $.each(dataInt.newdata, function(key, value) {
-                var newbox = $("<div>").addClass("index-list-item").appendTo($(".index-list"));
-                var newsitem = $("<div>").addClass("index-list-main showleft").appendTo(newbox);
-                var imgbox = $("<div>").addClass("index-list-image").appendTo(newsitem);
-                var img = $("<img>").attr("src", $(value).attr("newsimg")).appendTo(imgbox);
-                var newstext = $("<div>").addClass("index-list-main-text").appendTo(newsitem);
-                var title = $("<div>").addClass("index-list-main-title").text($(value).attr("newstitle")).appendTo(newstext);
-                var content = $("<div>").addClass("index-list-main-abs").text($(value).attr("newscontent")).appendTo(newstext);
-                var newsbottom = $("<div>").addClass("index-list-bottom").appendTo(newsitem);
-                var time = $("<div>").addClass("index-list-main-time").appendTo(newsbottom);
-                var newtime = $("<div>").addClass("tip-time").text($(value).attr("newstime")).appendTo(time);
+                var newbox = $('<div class="index-list-item">');
+                var newsitem = $('<div class="index-list-main">');
+                var imgbox = $('<div class="index-list-image">');
+                var img = $('<img src="' + $(value).attr("newsimg") + '">');
+                var newstext = $('<div class="index-list-main-text">');
+                var title = $('<div class="index-list-main-title">').text($(value).attr("newstitle"));
+                var content = $('<div class="index-list-main-abs">').text($(value).attr("newscontent"));
+                var newsbottom = $('<div class="index-list-bottom">');
+                var time = $('<div class="index-list-main-time">');
+                var newstime = $('<div class="tip-time">').text($(value).attr("newstime"));
+                $(".index-list").append(newbox.append(newsitem.append(imgbox.append(img)).append(newstext.append(title).append(content)).append(newsbottom.append(time.append(newstime)))));
             })
         }
     }
