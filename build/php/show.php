@@ -11,11 +11,11 @@
 	while( $row = mysql_fetch_array($result) ){
 		array_push($arr,array(
 			"newsid"=> htmlspecialchars_decode($row['newsid']),
-			"newstype"=> htmlspecialchars_decode($row['newstype']),
 			"newstitle"=> htmlspecialchars_decode($row['newstitle']),
 			"newsimg"=>$row['newsimg'],
 			"newscontent"=> htmlspecialchars_decode($row['newscontent']),
 			"newstime"=> htmlspecialchars_decode($row['newstime']),
+			"newstype"=> htmlspecialchars_decode($row['newstype']),
 			"token" => ($_SESSION['token'])
 			));
 		}

@@ -141,24 +141,47 @@ function ajax() {
         for (i in data) {
             var dataInt = {
                 newdata: [{
+                    newsid: data[i].newsid,
                     newstitle: data[i].newstitle,
                     newsimg: data[i].newsimg,
                     newscontent: data[i].newscontent,
-                    newstime: data[i].newstime
+                    newstime: data[i].newstime,
+                    newstype: data[i].newstype
                 }]
             }
             $.each(dataInt.newdata, function(key, value) {
-                var newbox = $('<div class="index-list-item">');
-                var newsitem = $('<div class="index-list-main">');
-                var imgbox = $('<div class="index-list-image">');
-                var img = $('<img src="' + $(value).attr("newsimg") + '">');
-                var newstext = $('<div class="index-list-main-text">');
-                var title = $('<div class="index-list-main-title">').text($(value).attr("newstitle"));
-                var content = $('<div class="index-list-main-abs">').text($(value).attr("newscontent"));
-                var newsbottom = $('<div class="index-list-bottom">');
-                var time = $('<div class="index-list-main-time">');
-                var newstime = $('<div class="tip-time">').text($(value).attr("newstime"));
-                $(".index-list").append(newbox.append(newsitem.append(imgbox.append(img)).append(newstext.append(title).append(content)).append(newsbottom.append(time.append(newstime)))));
+                console.log($(value).attr("newstype"));
+                if ($(value).attr("newstype") == 01) {
+                    var newsbox = $('<div class="index-list-item-01" id="newsid_' + $(value).attr("newsid") + '">');
+                    var newsitem = $('<div class="index-list-main">');
+                    var imgbox = $('<div class="index-list-image">');
+                    var img = $('<img src="./build/img/newsimg/' + $(value).attr("newsimg") + '.JPEG">');
+                    var newstext = $('<div class="index-list-main-text">');
+                    var title = $('<div class="index-list-main-title">').text($(value).attr("newstitle"));
+                    var newsbottom = $('<div class="index-list-bottom">');
+                    var time = $('<div class="index-list-main-time">');
+                    var newstime = $('<div class="tip-time">').text($(value).attr("newstime"));
+                    $(".index-list").prepend(newsbox.append(newsitem.append(imgbox.append(img)).append(newstext.append(title).append(content)).append(newsbottom.append(time.append(newstime)))));
+                } else if ($(value).attr("newstype") == 2) {
+                    var newsbox = $('<div class="index-list-item-02" id="newsid_' + $(value).attr("newsid") + '">');
+                    var newsitem = $('<div class="index-list-main">');
+                    var imgbox = $('<div class="index-list-image">');
+                    var img01 = $('<img src="./build/img/newsimg/' + $(value).attr("newsimg") + '-1.JPEG">');
+                    var img02 = $('<img src="./build/img/newsimg/' + $(value).attr("newsimg") + '-2.JPEG">');
+                    var img03 = $('<img src="./build/img/newsimg/' + $(value).attr("newsimg") + '-3.JPEG">');
+                    var newstext = $('<div class="index-list-main-text">');
+                    var title = $('<div class="index-list-main-title">').text($(value).attr("newstitle"));
+                    var content = $('<div class="index-list-main-abs">').text($(value).attr("newscontent"));
+                    var newsbottom = $('<div class="index-list-bottom">');
+                    var time = $('<div class="index-list-main-time">');
+                    var newstime = $('<div class="tip-time">').text($(value).attr("newstime"));
+                    imgbox.append(img01).append(img02).append(img03);
+                    $(".index-list").prepend(newsbox.append(newsitem.append(newstext.append(title)).append(imgbox)))
+                } else if (newstype == 3) {
+
+                } else {
+                    //continue;
+                }
             })
         }
     }
@@ -167,18 +190,31 @@ function ajax() {
 function btn_ajax() {
     //选择新闻类型
     $('.main-nav ul li a').on("click", function() {
-            var newsid = $(this).attr("id") || {};
-            console.log(newsid);
-            $.ajax({
-                url: './build/php/select.php',
-                type: 'post',
-                cache: 'false',
-                data: { newsid },
-                dataType: 'json',
-                beforeSend: beforeCheck,
-                error: errCheck, //错误执行方法
-                success: succCheck //成功执行方法
-            })
+            var newsid = $(this).attr("id");
+            //console.log(newsid);
+            if (newsid == "name") {
+                $.ajax({
+                    url: './build/php/show.php',
+                    type: 'post',
+                    cache: 'false',
+                    dataType: 'json',
+                    beforeSend: beforeCheck,
+                    error: errCheck, //错误执行方法
+                    success: succCheck //成功执行方法
+                })
+            } else {
+                $.ajax({
+                    url: './build/php/select.php',
+                    type: 'post',
+                    cache: 'false',
+                    data: { newsid },
+                    dataType: 'json',
+                    beforeSend: beforeCheck,
+                    error: errCheck, //错误执行方法
+                    success: succCheck //成功执行方法
+                })
+            }
+
 
             function beforeCheck() {
                 $('.index-list').empty();
@@ -219,24 +255,48 @@ function btn_ajax() {
         for (i in data) {
             var dataInt = {
                 newdata: [{
+                    newsid: data[i].newsid,
                     newstitle: data[i].newstitle,
                     newsimg: data[i].newsimg,
                     newscontent: data[i].newscontent,
-                    newstime: data[i].newstime
+                    newstime: data[i].newstime,
+                    newstype: data[i].newstype
+
                 }]
             }
             $.each(dataInt.newdata, function(key, value) {
-                var newbox = $('<div class="index-list-item">');
-                var newsitem = $('<div class="index-list-main">');
-                var imgbox = $('<div class="index-list-image">');
-                var img = $('<img src="' + $(value).attr("newsimg") + '">');
-                var newstext = $('<div class="index-list-main-text">');
-                var title = $('<div class="index-list-main-title">').text($(value).attr("newstitle"));
-                var content = $('<div class="index-list-main-abs">').text($(value).attr("newscontent"));
-                var newsbottom = $('<div class="index-list-bottom">');
-                var time = $('<div class="index-list-main-time">');
-                var newstime = $('<div class="tip-time">').text($(value).attr("newstime"));
-                $(".index-list").append(newbox.append(newsitem.append(imgbox.append(img)).append(newstext.append(title).append(content)).append(newsbottom.append(time.append(newstime)))));
+                if (newstype == 1) {
+                    var newbox = $('<div class="index-list-item-01" id="newsid_' + $(value).attr("newsid") + '">');
+                    var newsitem = $('<div class="index-list-main">');
+                    var imgbox = $('<div class="index-list-image">');
+                    var img = $('<img src="./build/img/newsimg/' + $(value).attr("newsimg") + '.JPEG">');
+                    var newstext = $('<div class="index-list-main-text">');
+                    var title = $('<div class="index-list-main-title">').text($(value).attr("newstitle"));
+                    var newsbottom = $('<div class="index-list-bottom">');
+                    var time = $('<div class="index-list-main-time">');
+                    var newstime = $('<div class="tip-time">').text($(value).attr("newstime"));
+                    $(".index-list").prepend(newbox.append(newsitem.append(imgbox.append(img)).append(newstext.append(title).append(content)).append(newsbottom.append(time.append(newstime)))));
+                } else if (newstype == 2) {
+                    var newbox = $('<div class="index-list-item-02" id="newsid_' + $(value).attr("newsid") + '">');
+                    var newsitem = $('<div class="index-list-main">');
+                    var imgbox = $('<div class="index-list-image">');
+                    var img01 = $('<img src="./build/img/newsimg/' + $(value).attr("newsimg") + '-1.JPEG">');
+                    var img02 = $('<img src="./build/img/newsimg/' + $(value).attr("newsimg") + '-2.JPEG">');
+                    var img03 = $('<img src="./build/img/newsimg/' + $(value).attr("newsimg") + '-3.JPEG">');
+                    var newstext = $('<div class="index-list-main-text">');
+                    var title = $('<div class="index-list-main-title">').text($(value).attr("newstitle"));
+                    var content = $('<div class="index-list-main-abs">').text($(value).attr("newscontent"));
+                    var newsbottom = $('<div class="index-list-bottom">');
+                    var time = $('<div class="index-list-main-time">');
+                    var newstime = $('<div class="tip-time">').text($(value).attr("newstime"));
+                    imgbox.append(img01).append(img02).append(img03);
+                    $(".index-list").prepend(newsbox.append(newsitem.append(newstext).append(imgbox)))
+                } else if (newstype == 3) {
+
+                } else {
+                    continue
+                }
+
             })
         }
     }
@@ -246,4 +306,4 @@ imgmove();
 Carousel_Y();
 btn_click();
 ajax();
-btn_ajax();
+// btn_ajax();
